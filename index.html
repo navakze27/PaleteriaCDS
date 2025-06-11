@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Paletera Creadora de Sueños - Experiencia Gourmet</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Define variables para los colores */
+      --color-primary: #f06292; /* Rosa principal */
+      --color-secondary: #d81b60; /* Rosa oscuro/cereza */
+      --color-accent: #f48fb1; /* Rosa claro */
+      --color-background-light: #fff8f0; /* Blanco roto / Crema suave */
+      --color-background-soft: #fce4ec; /* Rosa muy claro */
+      --color-text-dark: #333; /* Texto oscuro */
+      --color-white: #ffffff;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif; /* Fuente moderna y limpia */
+      background-color: var(--color-background-light);
+      margin: 0;
+      padding: 0;
+      color: var(--color-text-dark);
+      line-height: 1.7; /* Mayor interlineado para mejor lectura */
+      scroll-behavior: smooth; /* Desplazamiento suave al hacer clic en enlaces ancla */
+    }
+
+    /* Estilo del Header: Más Impactante */
+    header {
+      background-color: var(--color-primary);
+      color: var(--color-white);
+      padding: 40px 0;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
+      position: relative;
+      overflow: hidden; /* Para asegurar que no se salgan elementos */
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif; /* Fuente elegante para el título */
+      font-size: 3.2em; /* Título más grande */
+      margin: 0;
+      letter-spacing: 2px; /* Espaciado entre letras */
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra de texto sutil */
+    }
+
+    header p {
+      font-size: 1.2em;
+      font-style: italic;
+      margin-top: 10px;
+      opacity: 0.9;
+    }
+
+    /* Navegación: Sticky y Profesional con Dropdown Avanzado */
+    nav {
+      background-color: var(--color-secondary);
+      position: sticky;
+      top: 0;
+      z-index: 1000; /* Asegura que esté siempre encima */
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: center; /* Centra los elementos del menú */
+      flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+    }
+
+    nav ul li {
+      position: relative; /* Necesario para el dropdown */
+      flex-grow: 0; /* Evita que los elementos se estiren */
+    }
+
+    nav ul li a {
+      display: block;
+      color: var(--color-white);
+      text-align: center;
+      padding: 18px 25px; /* Mayor padding para botones más grandes */
+      text-decoration: none;
+      font-weight: 600; /* Texto más bold */
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      text-transform: uppercase; /* Mayúsculas para los ítems del menú */
+      letter-spacing: 0.5px;
+    }
+
+    nav ul li a:hover {
+      background-color: var(--color-primary);
+      transform: translateY(-2px); /* Efecto sutil al pasar el mouse */
+    }
+
+    /* Dropdown Content */
+    nav ul li.dropdown-item .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: var(--color-secondary);
+      min-width: 200px; /* Ancho mínimo para el dropdown */
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.25);
+      z-index: 1001; /* Asegura que esté encima de todo */
+      left: 50%; /* Centra el dropdown bajo su padre */
+      transform: translateX(-50%);
+      border-top: 3px solid var(--color-primary); /* Borde superior distintivo */
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px) translateX(-50%); /* Posición inicial para la animación */
+      transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+      border-radius: 0 0 8px 8px; /* Bordes redondeados abajo */
+    }
+
+    nav ul li.dropdown-item:hover .dropdown-content {
+      display: block;
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) translateX(-50%); /* Posición final de la animación */
+    }
+
+    nav ul li.dropdown-item .dropdown-content a {
+      color: var(--color-white);
+      padding: 12px 20px;
+      text-decoration: none;
+      display: block;
+      text-align: left;
+      font-weight: 400;
+      transition: background-color 0.2s ease, padding-left 0.2s ease;
+      text-transform: none; /* No mayúsculas para los ítems del dropdown */
+    }
+
+    nav ul li.dropdown-item .dropdown-content a:hover {
+      background-color: var(--color-primary);
+      padding-left: 25px; /* Efecto de indentación al pasar el mouse */
+      border-radius: 0; /* Asegura que no tenga bordes redondeados intermedios */
+    }
+    nav ul li.dropdown-item .dropdown-content a:first-child:hover {
+        border-top-left-radius: 0; /* Para el primer elemento si el padre tiene border-radius */
+        border-top-right-radius: 0;
+    }
+    nav ul li.dropdown-item .dropdown-content a:last-child:hover {
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+    }
+
+    /* Contenido Principal: Mejor Distribución */
+    .contenido {
+      width: 90%; /* Más ancho en pantallas grandes */
+      max-width: 1200px; /* Límite para que no se extienda demasiado */
+      margin: 40px auto; /* Mayor margen superior e inferior */
+      background-color: var(--color-white);
+      padding: 40px; /* Mayor padding interno */
+      border-radius: 12px; /* Bordes más redondeados */
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* Sombra más suave y extendida */
+    }
+
+    /* Títulos de Sección: Visualmente Atractivos */
+    .contenido h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5em; /* Títulos de sección más grandes */
+      color: var(--color-secondary);
+      margin-top: 50px; /* Más espacio antes de cada nueva sección */
+      margin-bottom: 25px;
+      text-align: center; /* Centra los títulos de sección */
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    .contenido h2::after { /* Línea decorativa debajo del título */
+      content: '';
+      display: block;
+      width: 80px; /* Ancho de la línea */
+      height: 4px;
+      background-color: var(--color-primary);
+      margin: 10px auto 0; /* Centra la línea */
+      border-radius: 2px;
+    }
+
+    .contenido p, .contenido ul, .contenido ol {
+      font-size: 1.1em;
+      margin-bottom: 1.5em;
+      text-align: justify;
+      line-height: 1.8;
+      max-width: 900px; /* Límite de ancho para los párrafos para mejor lectura */
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .contenido ul, .contenido ol {
+        padding-left: 20px; /* Añade indentación a las listas */
+    }
+
+    .contenido li {
+        margin-bottom: 8px;
+    }
+
+    /* Tablas: Diseño Elegante */
+    .contenido table {
+      width: 90%; /* Más ancho para las tablas */
+      margin: 30px auto; /* Centra la tabla y le da espacio */
+      border-collapse: separate; /* Permite border-radius en celdas */
+      border-spacing: 0;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      border-radius: 10px; /* Bordes redondeados en la tabla */
+      overflow: hidden; /* Asegura que el border-radius se aplique */
+    }
+
+    .contenido th, .contenido td {
+      border: none; /* Elimina bordes internos para un look más limpio */
+      padding: 18px; /* Mayor padding */
+      text-align: center;
+      font-size: 1.1em;
+      transition: background-color 0.3s ease;
+    }
+
+    .contenido th {
+      background-color: var(--color-secondary);
+      color: var(--color-white);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .contenido td {
+      background-color: var(--color-background-soft);
+      border-bottom: 1px solid var(--color-accent); /* Separador sutil entre filas */
+    }
+
+    .contenido tr:last-child td {
+        border-bottom: none; /* Elimina el borde de la última fila */
+    }
+
+    .contenido tr:hover td { /* Efecto hover en filas */
+        background-color: #ffe0f0; /* Un rosa aún más suave al pasar el mouse */
+    }
+
+    /* Imágenes y Video: Centrados y con Estilo */
+    .seccion-media { /* Nuevo nombre para unificar estilos de imagen/video */
+      text-align: center;
+      margin: 50px auto; /* Mayor espacio */
+      max-width: 900px; /* Límite para que no se hagan enormes */
+    }
+
+    .seccion-media img,
+    .seccion-media video {
+      display: block;
+      margin: 25px auto;
+      max-width: 100%; /* Asegura que se adapten al contenedor */
+      height: auto;
+      border-radius: 10px; /* Bordes redondeados */
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12); /* Sombra más definida */
+      border: 3px solid var(--color-accent); /* Borde sutil alrededor */
+    }
+
+    /* Contacto: Bloque Destacado */
+    .contacto-info {
+        margin-top: 60px;
+        padding: 30px;
+        background-color: var(--color-background-soft);
+        border-radius: 12px;
+        border: 2px solid var(--color-accent);
+        text-align: center; /* Centra el contenido de contacto */
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .contacto-info h3 {
+        font-family: 'Playfair Display', serif;
+        color: var(--color-secondary);
+        font-size: 1.8em;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+    }
+    .contacto-info h3::after {
+        content: '';
+        display: block;
+        width: 50px;
+        height: 3px;
+        background-color: var(--color-primary);
+        margin: 8px auto 0;
+        border-radius: 2px;
+    }
+
+    .contacto-info p {
+        font-size: 1.15em;
+        margin-bottom: 12px;
+        text-align: center; /* Centra el texto de contacto */
+        line-height: 1.6;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+        .contenido {
+            width: 95%;
+            padding: 30px;
+        }
+        nav ul li a {
+            padding: 15px 20px;
+        }
+        .contenido h1 {
+            font-size: 2.8em;
+        }
+        .contenido h2 {
+            font-size: 2.2em;
+        }
+    }
+
+    @media (max-width: 768px) {
+        header h1 {
+            font-size: 2.5em;
+        }
+        header p {
+            font-size: 1em;
+        }
+        nav ul {
+            flex-direction: column; /* Apila los elementos del menú */
+            align-items: stretch; /* Estira los elementos para llenar el ancho */
+        }
+        nav ul li a {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.1); /* Separador sutil */
+        }
+        nav ul li:last-child a {
+            border-bottom: none;
+        }
+
+        /* Dropdown en móvil: se expande directamente */
+        nav ul li.dropdown-item .dropdown-content {
+            position: static; /* No flotante */
+            min-width: unset; /* Sin ancho mínimo */
+            box-shadow: none;
+            border-top: none;
+            transform: none; /* Elimina transformaciones */
+            left: unset;
+            opacity: 1; /* Siempre visible si el padre está hover/activo */
+            visibility: visible;
+            background-color: #c2185b; /* Un tono un poco más oscuro para el submenú */
+            border-radius: 0;
+            padding: 0; /* Elimina padding para control de sub-items */
+        }
+        nav ul li.dropdown-item .dropdown-content a {
+            padding: 10px 30px; /* Indenta los sub-items */
+            font-size: 0.95em;
+        }
+        nav ul li.dropdown-item:hover .dropdown-content {
+            transform: none; /* Asegura que no haya transformaciones */
+        }
+
+        .contenido {
+            padding: 25px;
+        }
+        .contenido h2 {
+            font-size: 1.8em;
+        }
+        .contenido p, .contenido ul, .contenido ol {
+            font-size: 1em;
+            max-width: 100%;
+        }
+        .contenido table {
+            width: 100%;
+            font-size: 0.9em;
+        }
+        .contenido th, .contenido td {
+            padding: 12px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        header h1 {
+            font-size: 2em;
+        }
+        .contenido h2 {
+            font-size: 1.5em;
+        }
+        .contacto-info p {
+            font-size: 1em;
+        }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Paletera Creadora de Sueños</h1>
+    <p>Donde cada paleta cuenta una historia de sabor.</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#historia">HISTORIA</a></li>
+      <li class="dropdown-item">
+        <a href="javascript:void(0)" class="dropbtn">NUESTROS PRODUCTOS</a>
+        <div class="dropdown-content">
+          <a href="#productos">Productos Destacados</a>
+          <a href="#precios">Lista de Precios</a>
+          <a href="#promociones">Promociones Especiales</a>
+        </div>
+      </li>
+      <li><a href="#meta">METAS Y VALORES</a></li>
+      <li><a href="#organizacion">ORGANIZACIÓN</a></li>
+      <li><a href="#ubicacion">UBICACIÓN</a></li>
+      <li><a href="#contacto">CONTACTO</a></li>
+    </ul>
+  </nav>
+
+  <div class="contenido">
+    <h2 id="historia">HISTORIA DE "CREADORA DE SUEÑOS"</h2>
+    <p>
+      En el corazón de una pequeña cocina en casa, nació "Creadora de Sueños", impulsada por la pasión incondicional de Marisol por el chocolate y el anhelo de compartir esa alegría con el mundo. Lo que comenzó como una serie de experimentos con recetas caseras de paletas de chocolate, se transformó rápidamente en la búsqueda de una experiencia que trascendiera el simple placer de un dulce, evocando felicidad y los más cálidos recuerdos.
+    </p>
+    <p>
+      Tras meses de dedicación, pruebas y ajustes meticulosos, Guadalupe (quien fue clave en el perfeccionamiento) finalmente descubrió la fórmula perfecta. Sus paletas de chocolate no solo eran increíblemente cremosas y ricas, sino que poseían un toque de originalidad inconfundible que las hacía verdaderamente únicas.
+    </p>
+    <p>
+      Pero "Creadora de Sueños" es mucho más que exquisitas paletas de chocolate. Es la materialización del amor, el cuidado y la pasión que se infunden en cada creación. Es el genuino deseo de ver la sonrisa que se dibuja en el rostro de alguien al probar una de nuestras paletas por primera vez, transportándolos a un lugar de pura indulgencia y nostalgia. Nuestra misión es simple, pero poderosa: compartir esa felicidad con el mundo, una paleta de chocolate a la vez.
+    </p>
+
+    <h2>MISIÓN</h2>
+    <p>
+      "Crear momentos de felicidad y nostalgia a través de nuestras paletas de chocolate artesanales, hechas con amor y dedicación, y compartir nuestra profunda pasión por el chocolate con el mundo entero.”
+    </p>
+
+    <h2>VISIÓN</h2>
+    <p>
+     Ser la marca líder en paletas de chocolate artesanales, reconocida por su calidad excepcional, su originalidad inigualable y su genuina pasión por el chocolate. Aspiramos a ser una fuente constante de alegría y entrañables recuerdos, tanto para nuestros clientes como para la comunidad que nos rodea.
+    </p>
+
+    <h2 id="meta">METAS Y VALORES</h2>
+    <h3>Metas a Corto Plazo (1-2 años)</h3>
+    <ol>
+      <li><strong>Incrementar las ventas:</strong> Aumentar nuestra facturación en un 20% anual durante los próximos dos años, consolidando nuestra posición en el mercado.</li>
+      <li><strong>Expansión digital:</strong> Ampliar significativamente nuestra presencia en línea a través de una estrategia robusta en redes sociales y la optimización de nuestro sitio web para impulsar las ventas digitales.</li>
+      <li><strong>Innovación constante:</strong> Desarrollar y lanzar nuevos productos y sabores de manera regular para mantener nuestra oferta fresca, emocionante y competitiva.</li>
+      <li><strong>Excelencia del producto:</strong> Mejorar continuamente la calidad y la consistencia de nuestras paletas y chocolates, garantizando la máxima satisfacción de cada cliente.</li>
+    </ol>
+
+    <h3>Valores de la Empresa</h3>
+    <ul>
+      <li><strong>Pasión por el Chocolate:</strong> Nos impulsa un amor incondicional por el chocolate, y deseamos fervientemente compartir esa pasión en cada bocado.</li>
+      <li><strong>Calidad y Originalidad:</strong> Nos dedicamos a crear paletas y chocolates de la más alta calidad, con propuestas únicas que sorprenden y deleitan.</li>
+      <li><strong>Amor y Dedicación:</strong> Cada una de nuestras creaciones está impregnada de un profundo cariño y una esmerada atención al detalle.</li>
+      <li><strong>Responsabilidad y Sostenibilidad:</strong> Nos preocupamos por el bienestar de nuestro planeta y nuestra comunidad, buscando activamente formas de reducir nuestro impacto y generar un cambio positivo.</li>
+      <li><strong>Comunidad y Conexión:</strong> Creemos en el poder de unir a las personas. Queremos construir una comunidad de amantes del chocolate que se sientan conectados a través de nuestra marca y sus experiencias.</li>
+    </ul>
+
+    <h2 id="organizacion">ORGANIGRAMA DE LA EMPRESA</h2>
+    <div class="seccion-media">
+      <img src="C:\Users\perez\OneDrive\Desktop\index\WhatsApp Image 2025-06-08 at 9.36.09 PM.jpeg" alt="Organigrama de la Empresa 'Creadora de Sueños'" class="imagen">
+      <p style="font-size: 0.9em; font-style: italic; color: #666; margin-top: 10px;">Estructura organizativa de Paletera Creadora de Sueños.</p>
+    </div>
+
+    <h2 id="productos">NUESTROS PRODUCTOS Y SERVICIOS</h2>
+    <p>En "Creadora de Sueños", nos enorgullece ofrecer una selección cuidadosamente elaborada de delicias de chocolate que satisfacen todos los gustos y ocasiones:</p>
+    <ul>
+      <li><strong>Paletas de Chocolate Artesanales:</strong> Cada paleta es una obra de arte hecha a mano, utilizando ingredientes de la más alta calidad y combinaciones de sabores únicas que prometen una experiencia inolvidable.</li>
+      <li><strong>Cajas de Chocolates Selección:</strong> Nuestras cajas son un regalo perfecto. Contienen una fina variedad de chocolates seleccionados, elegantemente empaquetados para realzar cualquier celebración o evento especial.</li>
+      <li><strong>Chocolates Personalizados:</strong> Creamos chocolates a medida, con la posibilidad de grabar iniciales, fechas o diseños especiales. Ideales para detalles corporativos, bodas o cualquier evento que requiera un toque distintivo y personal.</li>
+    </ul>
+
+    <h2 id="precios">LISTA DE PRECIOS</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Precio (MXN)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>CHOCOLATES ARTESANALES (unidad)</td>
+          <td>$8</td>
+        </tr>
+        <tr>
+          <td>CAJAS DE CHOCOLATE (mediana)</td>
+          <td>$18</td>
+        </tr>
+        <tr>
+          <td>CHOCOLATES PERSONALIZADOS (unidad)</td>
+          <td>$10</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 id="logo">NUESTRO LOGOTIPO Y ESLOGAN</h2>
+    <div class="seccion-media">
+      <img src="C:\Users\perez\OneDrive\Desktop\Todo\index\WhatsApp Image 2025-06-08 at 9.43.19 PM.jpeg"alt="Logotipo y Eslogan de 'Creadora de Sueños'" class="imagen">
+      <p style="font-size: 0.9em; font-style: italic; color: #666; margin-top: 10px;">La esencia de nuestra marca: frescura y originalidad en cada bocado.</p>
+    </div>
+
+    <h2 id="promociones">PROMOCIONES DEL MES</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Promoción Actual</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>CHOCOLATES ARTESANALES</td>
+          <td>¡Lleva 3, paga 2!</td>
+        </tr>
+        <tr>
+          <td>CAJAS DE CHOCOLATE</td>
+          <td>2 x 1 en tu segunda caja</td>
+        </tr>
+        <tr>
+          <td>CHOCOLATES PERSONALIZADOS</td>
+          <td>¡Lleva 3, paga 2!</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 id="ubicacion">UBICACIÓN Y CONTACTO</h2>
+    <h3>Dirección de la Empresa</h3>
+    <p>
+      Nos encontramos en San Pedro Tlanixco, Tenango Del Valle, Estado De México; con fecha de registro a 6 de Febrero de 2025.
+    </p>
+
+    <h3>Ubicación Detallada (Croquis de Localización)</h3>
+    <p>Nuestra tienda está convenientemente ubicada en Colonia Azteca.</p>
+    <div class="seccion-media">
+      <img src="C:\Users\perez\OneDrive\Desktop\Todo\index\WhatsApp Image 2025-06-08 at 9.36.09 PM.jpeg" alt="Croquis de Localización de 'Creadora de Sueños'" class="imagen">
+      <p style="font-size: 0.9em; font-style: italic; color: #666; margin-top: 10px;">Encuéntranos fácilmente siguiendo este croquis.</p>
+    </div>
+
+    <div class="contacto-info" id="contacto">
+      <h3>¡CONTÁCTANOS!</h3>
+      <p>Para pedidos especiales, consultas o simplemente para compartir tu experiencia:</p>
+      <p><strong>Teléfono:</strong> <a href="tel:+5255611578014" style="color: var(--color-secondary); text-decoration: none; font-weight: bold;">+52 55611578014</a></p>
+      <p><strong>Correo Electrónico:</strong> <a href="mailto:gm3597097@gmail.com" style="color: var(--color-secondary); text-decoration: none; font-weight: bold;">gm3597097@gmail.com</a></p>
+      <p>¡Será un placer atenderte y endulzar tu día!</p>
+    </div>
+
+    <h2 class="seccion-video">UN VISTAZO A NUESTRO ARTE</h2>
+    <div class="seccion-media">
+      <video width="720" height="405" controls autoplay loop muted poster="imagen.jpg">
+        <source src="C:\Users\perez\OneDrive\Desktop\Todo\index\WhatsApp Video 2025-05-14 at 10.43.14 AM.mp4" type="video/mp4">
+        Tu navegador no soporta la reproducción de video. Por favor, actualízalo o usa un navegador compatible.
+      </video>
+      <p style="font-size: 0.9em; font-style: italic; color: #666; margin-top: 10px;">Descubre el proceso artesanal detrás de cada paleta de chocolate.</p>
+    </div>
+  </div>
+ <h2 id="productos">HISTORIA</h2>
+
+<h2 id="productos">Creadora de Sueños: Una Empresa Socialmente Responsible</h2>
+<p>
+En un mundo donde la rentabilidad empresarial ya no es suficiente, Creadora de Sueños se posiciona como una organización que va más allá de lo económico, promoviendo un compromiso ético, social y ambiental en cada una de sus acciones. Nuestra empresa ha asumido con responsabilidad el papel de contribuir activamente al bienestar de la sociedad, al desarrollo de nuestros colaboradores, a la protección del entorno natural y a la promoción de valores que construyan un futuro más justo y sostenible.
+Como empresa dedicada a materializar los sueños de las personas —ya sea a través de eventos, experiencias, productos personalizados u otros servicios inspiradores— entendemos que nuestra misión debe tener un impacto positivo real en la comunidad que nos rodea. Por ello, hemos integrado de forma voluntaria y estratégica los principios de la responsabilidad social empresarial (RSE) en nuestro modelo de negocio.
+Compromiso con el bienestar de las personas
+Nuestra prioridad es el respeto y desarrollo integral de quienes forman parte de nuestra empresa. Fomentamos un ambiente laboral sano, inclusivo y motivador, donde cada empleado se sienta valorado, escuchado y en constante crecimiento. Promovemos la igualdad de oportunidades, el desarrollo profesional mediante capacitaciones continuas y el equilibrio entre la vida laboral y personal. Además, incentivamos la creatividad y el liderazgo desde una visión humana, que coloca a la persona en el centro de la organización.
+Vínculo con la comunidad
+Creadora de Sueños cree firmemente que el éxito empresarial solo tiene sentido si va de la mano con el progreso social. Por ello, desarrollamos programas y alianzas con instituciones locales para apoyar causas como la educación, la salud mental, la inclusión social y el emprendimiento juvenil. Organizamos actividades de voluntariado corporativo, donaciones en especie y campañas de concientización que buscan impactar de forma tangible en las vidas de quienes más lo necesitan.
+Responsabilidad ambiental
+Nuestra empresa ha adoptado prácticas sostenibles para reducir su huella ecológica. Desde el uso consciente de recursos y materiales reciclables en nuestros productos y eventos, hasta campañas internas para disminuir el consumo de energía y papel, buscamos constantemente maneras de ser más responsables con el planeta. Además, promovemos una cultura ecológica entre nuestros colaboradores y clientes, invitándolos a tomar decisiones más sostenibles en su día a día.
+Ética y transparencia en nuestra operación
+La honestidad, la coherencia y la legalidad son pilares fundamentales en cada uno de nuestros procesos. Operamos con total transparencia frente a nuestros clientes, proveedores y aliados, garantizando que cada servicio ofrecido  en el respeto, la calidad y el cumplimiento de nuestros compromisos. Nos esforzamos por construir relaciones duraderas y éticas, basadas en la confianza mutua.
+Creadora de Sueños: creando con propósito
+El verdadero propósito de Creadora de Sueños no es solo hacer realidad las ideas y deseos de nuestros clientes, sino hacerlo de forma ética, responsable y transformadora. Cada proyecto que emprendemos lleva implícito un compromiso con la sociedad, con el ambiente y con las personas. Creemos que el éxito sostenible se logra construyendo valor compartido, siendo parte activa de las soluciones y generando un impacto positivo duradero.
+Por estas razones, podemos afirmar con orgullo que Creadora de Sueños es una empresa socialmente responsable, no solo por lo que hacemos, sino por cómo lo hacemos: con corazón, conciencia y compromiso.
+</p>
+<h2 id="productos">DERECHO II</h2>
+<div class="seccion-media">
+      <img src="C:\Users\perez\OneDrive\Desktop\Todo\index\WhatsApp Image 2025-06-10 at 9.26.02 PM.jpeg" alt="Logotipo y Eslogan de 'Creadora de Sueños'" class="imagen">
+      <p style="font-size: 0.9em; font-style: italic; color: #666; margin-top: 10px;">La esencia de nuestra marca: frescura y originalidad en cada bocado.</p>
+    </div>
+</body>
+</html>
